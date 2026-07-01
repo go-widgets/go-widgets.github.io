@@ -20,7 +20,7 @@ disableKinds = ["taxonomy", "term", "RSS", "sitemap", "404"]
 [[params.components]]
   name = "svg — RGBA → SVG snapshot"
   status = "ready"
-  blurb = "**[svg](https://github.com/go-widgets/svg)** — one-function package that wraps any RGBA render (the output of a toolkit widget composition, or any other pixel producer) in a self-contained SVG with the pixels embedded as a base-64 PNG. Bit-exact, scales crisply at any zoom, drops into any Markdown renderer. 100 % statement coverage."
+  blurb = "**[svg](https://github.com/go-widgets/svg)** — wraps any RGBA render (a toolkit widget composition or any other pixel producer) in a self-contained SVG with the pixels embedded as a base-64 PNG. Bit-exact, scales crisply. Sibling `svg/widget` takes a `toolkit.Widget` directly; `svg/cmd/gallery-render` batch-renders every widget kind. See the [live snapshot gallery](https://go-widgets.github.io/svg/). 100 % statement coverage."
 [[params.components]]
   name = "gallery — live wasm demo"
   status = "ready"
