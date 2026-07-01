@@ -1,0 +1,8 @@
+# Hugo build cache
+/.hugo_cache/
+/resources/
+
+# Hugo output — deployed by the pages workflow, kept out of the tree
+# so PR diffs stay signal-only.
+/public/
+.hugo_build.lock

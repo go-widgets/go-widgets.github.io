@@ -1,0 +1,40 @@
+name: pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: false
+          fetch-depth: 0
+
+      - uses: peaceiris/actions-hugo@v3
+        with:
+          hugo-version: "0.130.0"
+          extended: true
+
+      - name: Build with Hugo
+        run: hugo --minify --gc
+
+      - uses: actions/configure-pages@v5
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: public/
+
+      - uses: actions/deploy-pages@v4

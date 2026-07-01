@@ -1,0 +1,23 @@
+baseURL = "https://go-widgets.github.io/"
+title = "go-widgets"
+disableKinds = ["taxonomy", "term", "RSS", "sitemap", "404"]
+
+[markup.goldmark.renderer]
+  unsafe = true
+
+[[params.components]]
+  name = "toolkit"
+  status = "ready"
+  blurb = "**[toolkit](https://github.com/go-widgets/toolkit)** — pure-Go pixel-blitting widget set: Button, Label, Entry, TextView, Menu, MenuBar, Dialog, Tooltip, DropDown, TreeView, Toolbar, Statusbar, FileChooser, ColorChooser, Calendar, Notification, and 19 more. 100% statement coverage. `LoadGTKTheme(css)` parses libadwaita/GTK3 `@define-color` → `Theme`."
+[[params.components]]
+  name = "Byte-buffer first"
+  status = "ready"
+  blurb = "Every widget composes pixels into a caller-supplied `[]byte`. No JS, no DOM, no canvas dep at the toolkit level. Works identically in `GOOS=js GOARCH=wasm` (browser SharedArrayBuffer clients), on any native Go target (native canvas backends, PNG output), or in headless tests (screenshot-hash regressions)."
+[[params.components]]
+  name = "GTK-theme aware"
+  status = "ready"
+  blurb = "`LoadGTKTheme(css)` reads any GTK3 / libadwaita `@define-color` block (Adwaita, Juno, WhiteSur, Solarized …) and hands you a `Theme` value that cascades through every widget. One assignment, whole app repaints."
+[[params.components]]
+  name = "Frame + Chrome extensions"
+  status = "planned"
+  blurb = "**Planned:** siblings under this org for the same byte-buffer-first philosophy — e.g. `svg` (SVG output backend), `tui` (terminal escape codes), `png` (offline gallery renderer). Each is a separate widget-set with its own `Draw` signature; the `toolkit` core stays lean."
