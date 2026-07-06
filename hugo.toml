@@ -8,7 +8,7 @@ disableKinds = ["taxonomy", "term", "RSS", "sitemap", "404"]
 [[params.components]]
   name = "toolkit"
   status = "ready"
-  blurb = "**[toolkit](https://github.com/go-widgets/toolkit)** — pure-Go pixel-blitting widget set: Button, Label, Entry, TextView, Menu, MenuBar, Dialog, Tooltip, DropDown, TreeView, Toolbar, Statusbar, FileChooser, ColorChooser, Calendar, Notification, and 19 more. 100% statement coverage. `LoadGTKTheme(css)` parses libadwaita/GTK3 `@define-color` → `Theme`."
+  blurb = "**[toolkit](https://github.com/go-widgets/toolkit)** — pure-Go pixel-blitting widget set. **62 widgets** across the whole GTK 4 / DaisyUI 4 surface: Button, Label, Entry, TextView, Menu/MenuBar, Dialog, Tooltip, DropDown, TreeView, Toolbar, Statusbar, FileChooser, ColorChooser, Calendar, Notification, Card, Alert, Toast, Banner, Popover, HeaderBar, ActionRow, ViewSwitcher, ChatBubble, Steps, Breadcrumbs, Pagination, Table, Diff, Stat, Timeline, Avatar, Rating, Chip, DropZone, SplitButton, IconButton, FormField, ProgressCircle, and 23 more. 100% statement coverage. `LoadGTKTheme(css)` parses libadwaita/GTK3 `@define-color` → `Theme`."
 [[params.components]]
   name = "Byte-buffer first"
   status = "ready"
