@@ -112,14 +112,19 @@
       dependency-free (no JS, no DOM, no canvas), which is what lets the same widget code compose pixels in a
       browser tab, a native window, or a headless CI test.</p>
 
-    <pre class="snippet"><code>import "github.com/go-widgets/toolkit"
+    <pre class="snippet"><code>import (
+    "github.com/go-widgets/toolkit"
+    "github.com/go-widgets/painter"
+)
 
 theme := toolkit.DefaultLight()
 btn := toolkit.NewButton("Click me", func() { println("clicked!") })
 btn.SetBounds(toolkit.Rect{X: 20, Y: 20, W: 120, H: 28})
 
-surface := make([]byte, 4*width*height) // your RGBA buffer
-btn.Draw(surface, width, theme)          // pixels land in surface
+// A Painter is the render seam: PixelPainter → RGBA bytes (wasm/native),
+// CellPainter → a terminal grid. Same widget code, either backend.
+p := painter.NewPixelPainter(make([]byte, 4*width*height), width, height)
+btn.Draw(p, theme)                       // pixels land in p's buffer
 btn.OnEvent(toolkit.Event{Kind: toolkit.EventClick, X: 50, Y: 30})</code></pre>
 
     <section class="grid">
