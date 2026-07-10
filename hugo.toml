@@ -8,7 +8,7 @@ disableKinds = ["taxonomy", "term", "RSS", "sitemap", "404"]
 [[params.components]]
   name = "toolkit"
   status = "ready"
-  blurb = "**[toolkit](https://github.com/go-widgets/toolkit)** — pure-Go pixel-blitting widget set. **62 widgets** across the whole GTK 4 / DaisyUI 4 surface: Button, Label, Entry, TextView, Menu/MenuBar, Dialog, Tooltip, DropDown, TreeView, Toolbar, Statusbar, FileChooser, ColorChooser, Calendar, Notification, Card, Alert, Toast, Banner, Popover, HeaderBar, ActionRow, ViewSwitcher, ChatBubble, Steps, Breadcrumbs, Pagination, Table, Diff, Stat, Timeline, Avatar, Rating, Chip, DropZone, SplitButton, IconButton, FormField, ProgressCircle, and 23 more. 100% statement coverage. `LoadGTKTheme(css)` parses libadwaita/GTK3 `@define-color` → `Theme`."
+  blurb = "**[toolkit](https://github.com/go-widgets/toolkit)** — pure-Go pixel-blitting widget set, **68 widgets**: the GTK-4 / DaisyUI staples (Button, Entry, TreeView, Menu, Notebook, Dialog, …), a chart family (LineChart / BarChart / PieChart), DatePicker, RangeSlider, MarkdownView, ContextMenu, an Overlay stacking container, drag-and-drop events, an opt-in accessibility bridge, and a pluggable scalable `Font` (with FontChooser). 100% statement coverage. `LoadGTKTheme(css)` parses libadwaita/GTK3 `@define-color` → `Theme`."
 [[params.components]]
   name = "Byte-buffer first"
   status = "ready"
@@ -26,6 +26,6 @@ disableKinds = ["taxonomy", "term", "RSS", "sitemap", "404"]
   status = "ready"
   blurb = "**[gallery](https://github.com/go-widgets/gallery)** — a browser wasm live-demo running the toolkit's full widget family set on a plain canvas. See it at [go-widgets.github.io/gallery](https://go-widgets.github.io/gallery/). No SharedArrayBuffer, no COOP/COEP; drops into any static host."
 [[params.components]]
-  name = "tui (planned)"
-  status = "planned"
-  blurb = "**[tui](https://github.com/go-widgets/tui)** — planned pure-Go widget set that renders into a terminal cell grid via ANSI escape codes. Same byte-buffer-first design axiom, different backing store. Reserved in the org while the API stabilises against a real consumer."
+  name = "tui — terminal cell widgets"
+  status = "ready"
+  blurb = "**[tui](https://github.com/go-widgets/tui)** — pure-Go cell-native widget set that renders into a terminal cell grid via a `CellPainter` (the same `painter.Painter` seam the pixel backend uses). 34 widgets + a FocusRing, plus a Sparkline mini-chart, syntax-highlighted TextEditor, and dogfooding demos (tui-explorer / tui-editor / tui-widget-explorer). Same byte-buffer-first axiom, terminal backing store. 100% statement coverage."
