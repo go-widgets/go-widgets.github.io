@@ -55,6 +55,7 @@
     display: inline-block; padding: 10px 18px; margin: 4px; border-radius: 8px; text-decoration: none;
     font-weight: 600; border: 1px solid var(--border);
   }
+  .btn .icon{display:inline-block;vertical-align:-0.15em;margin-right:.45em}
   .btn.primary { background: linear-gradient(135deg, var(--accent-2), var(--accent)); color: var(--accent-fg); border-color: var(--accent); }
   .btn.ghost { color: var(--fg); background: transparent; }
   .lead { color: var(--fg); max-width: 760px; margin: 8px auto 0; text-align: center; }
@@ -95,9 +96,9 @@
     </div>
     <div class="cta">
       <a class="btn primary" href="https://go-widgets.github.io/gallery/">▶ live demo</a>
-      <a class="btn ghost" href="https://github.com/go-widgets/toolkit">toolkit repo</a>
-      <a class="btn ghost" href="https://github.com/go-widgets/toolkit#readme">API + widgets</a>
-      <a class="btn ghost" href="https://github.com/go-widgets">org</a>
+      <a class="btn ghost" href="https://github.com/go-widgets/toolkit">{{ partial "icons/mark-github.html" . }}toolkit repo</a>
+      <a class="btn ghost" href="https://github.com/go-widgets/toolkit#readme">{{ partial "icons/book.html" . }}API + widgets</a>
+      <a class="btn ghost" href="https://github.com/go-widgets">{{ partial "icons/organization.html" . }}org</a>
     </div>
     <div class="badges">
       <a href="https://pkg.go.dev/github.com/go-widgets/toolkit"><img alt="pkg.go.dev" src="https://img.shields.io/badge/pkg.go.dev-toolkit-007d9c?logo=go&logoColor=white"></a>
