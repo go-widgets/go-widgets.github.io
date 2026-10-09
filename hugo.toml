@@ -5,31 +5,167 @@ disableKinds = ["taxonomy", "term", "RSS", "sitemap", "404"]
 [markup.goldmark.renderer]
   unsafe = true
 
-[[params.components]]
+# The shared stylesheet (layouts/partials/styles.html, the same file
+# go-fileshare and go-authn use) reads its colours from here and defaults to
+# their cyan. go-widgets' mark is teal (#0D9488, go-widgets/brand), so every
+# colour the sheet takes is given: base, deep and bright are the mark and two
+# shades of it; the rgba() washes and glows are the same teal at the opacity
+# the cyan defaults use.
+[params.brand]
+  base   = "#0D9488"
+  deep   = "#115E59"
+  bright = "#2DD4BF"
+  shadow   = "rgba(13,148,136,.7)"
+  glow     = "rgba(13,148,136,.6)"
+  wash     = "rgba(13,148,136,.10)"
+  washDeep = "rgba(17,94,89,.06)"
+  chipBg     = "#e6f7f5"
+  chipBorder = "#b2e5df"
+  chipFg     = "#115E59"
+  chipBgDark     = "rgba(45,212,191,.14)"
+  chipBorderDark = "rgba(45,212,191,.32)"
+  chipFgDark     = "#99f6e4"
+
+# Every module of the organisation, one card each.
+# "layer" = which part of the stack: rendering / state / surface / rules / app.
+# "tag"   = the newest tag when this was written. A release moves it; the
+#           repository's own tag list is the authority, and the card links there.
+# "docs"  = the documentation page that explains it, relative to /docs/latest/.
+# "blurb" = what it is, checked against the module's code rather than copied
+#           from a README: several of those READMEs are behind their code.
+
+[[params.modules]]
+  name = "painter"
+  layer = "rendering"
+  tag = "v0.15.0"
+  docs = "rendering/painter/"
+  blurb = "The seam every widget draws through: seven primitives, optional capabilities (clip, paths, images, masks, faces), a **pixel** painter and a **cell** painter."
+[[params.modules]]
   name = "toolkit"
-  status = "ready"
-  blurb = "**[toolkit](https://github.com/go-widgets/toolkit)** (v0.109.0) — pure-Go pixel-blitting widget set, **100+ widgets** (114 in the live snapshot gallery): the GTK-4 / DaisyUI staples (Button, Entry, TreeView, Menu, Notebook, Dialog, …), a full chart family (Line / Bar / Pie / Area / Scatter / Radar / Sparkline, with value-on-hover crosshairs), and interactive extras — Accordion, Carousel, CommandPalette, Wizard, DateRangePicker, ColorPicker, SegmentedBar, MarkdownEditor. A **dashboard / data suite** anchors it: a `Table` with cell editing, frozen columns, group rows, aggregate summaries and row-expanders; `TreeTable`, `PropertyGrid`, `Kanban` (drag cards) and `Gantt` (drag / resize bars); and an **event-calendar `Agenda`** (week / month / quarter / year) with **multiple colour-coded calendars**, a **sidebar** to toggle each on and off, and an **inline event editor**. A **`Skeleton` loading-screen family** covers first paint — shimmering text / rectangle / circle placeholders driven by `SetPhase`, composed into `NewSkeletonCard` and full-page `NewPageSkeleton` shells. Lists and tables gained multi-select, virtualized rendering, and drag-to-reorder; editors gained undo/redo, IME composition, and touch/gesture input; there's PNG export, a global clipboard, and built-in form validation. A complete container + layout-manager system rounds it out (`Container` + swappable `Layout` — `FitLayout`/`BoxLayout`/`BorderLayout`/`CardLayout`/`FlowLayout` — behind the `HBox`/`VBox`/`Grid`, `Dock`, `Border` (with splitters) convenience wrappers, a declarative `Node` builder and a `ViewController`). The opt-in accessibility bridge exposes role / name / value metadata, and every widget composes through a pluggable scalable `Font`. 100% statement coverage. `LoadGTKTheme(css)` parses libadwaita/GTK3 `@define-color` → `Theme`. Every widget is systematically parameterizable for **placement & orientation** — Notebook `TabSide` (top/bottom/left/right), vertical `ProgressBar`/`LevelBar`/`Scale`/`RangeSlider`, `Label`/`Table`-column `Align`, `DropDown.OpenUp`, `Toolbar`/`Steps` `Orientation`, horizontal `Timeline`, and corner-anchored, stackable `Toast`/`Notification` — the same widget code renders top/bottom/left/right, horizontal/vertical."
-[[params.components]]
-  name = "pure-Go font stack"
-  status = "ready"
-  blurb = "Text now renders through **[go-opentype](https://github.com/go-opentype/opentype)**, a zero-dependency TrueType/OpenType engine — the toolkit dropped its `x/image` font dependency entirely. Bundled, legible faces ship via **[go-opentype/fonts](https://github.com/go-opentype/fonts)**, with Atkinson Hyperlegible as the default `Font`. Same byte-buffer-first axiom: glyphs rasterize straight into the caller's pixel buffer, no C font library, no system font lookup required."
-[[params.components]]
-  name = "Byte-buffer first"
-  status = "ready"
-  blurb = "Every widget composes pixels into a caller-supplied `[]byte`. No JS, no DOM, no canvas dep at the toolkit level. Works identically in `GOOS=js GOARCH=wasm` (browser SharedArrayBuffer clients), on any native Go target (native canvas backends, PNG output), or in headless tests (screenshot-hash regressions)."
-[[params.components]]
-  name = "GTK-theme aware"
-  status = "ready"
-  blurb = "`LoadGTKTheme(css)` reads any GTK3 / libadwaita `@define-color` block (Adwaita, Juno, WhiteSur, Solarized …) and hands you a `Theme` value that cascades through every widget. One assignment, whole app repaints."
-[[params.components]]
-  name = "svg — RGBA → SVG snapshot"
-  status = "ready"
-  blurb = "**[svg](https://github.com/go-widgets/svg)** — wraps any RGBA render (a toolkit widget composition or any other pixel producer) in a self-contained SVG with the pixels embedded as a base-64 PNG. Bit-exact, scales crisply. Sibling `svg/widget` takes a `toolkit.Widget` directly; `svg/cmd/gallery-render` batch-renders every widget kind (**114 snapshots**, light + dark). See the [live snapshot gallery](https://go-widgets.github.io/svg/). 100 % statement coverage."
-[[params.components]]
-  name = "gallery — live wasm demo"
-  status = "ready"
-  blurb = "**[gallery](https://github.com/go-widgets/gallery)** — a browser wasm live-demo running the toolkit's full widget family set on a plain canvas. See it at [go-widgets.github.io/gallery](https://go-widgets.github.io/gallery/). No SharedArrayBuffer, no COOP/COEP; drops into any static host."
-[[params.components]]
-  name = "tui — terminal cell widgets"
-  status = "ready"
-  blurb = "**[tui](https://github.com/go-widgets/tui)** — pure-Go cell-native widget set that renders into a terminal cell grid via a `CellPainter` (the same `painter.Painter` seam the pixel backend uses). 34 widgets + a FocusRing, plus a Sparkline mini-chart, syntax-highlighted TextEditor, and dogfooding demos (tui-explorer / tui-editor / tui-widget-explorer). Same byte-buffer-first axiom, terminal backing store. 100% statement coverage."
+  layer = "rendering"
+  tag = "v0.328.0"
+  docs = "rendering/toolkit/"
+  blurb = "**160 widget types**: inputs, containers with swappable layouts, menus and dialogs, a data suite (Table, TreeTable, Kanban, Gantt, Agenda), eight charts. GTK themes, OpenType text, touch, accessibility."
+[[params.modules]]
+  name = "skin"
+  layer = "rendering"
+  tag = "v0.2.0"
+  docs = "rendering/skin/"
+  blurb = "A widget's parts, states and transitions in a `.skin.json` file. The toolkit's button, check, switch, chip and card, rewritten as skins, render **pixel for pixel** the same."
+[[params.modules]]
+  name = "isoicons"
+  layer = "rendering"
+  tag = "v0.3.0"
+  docs = "modules/"
+  blurb = "Isometric icon packs — 44 cloud-native, 9 AWS — for the toolkit's isometric diagrams. Assets vendored unmodified, each under its own licence."
+[[params.modules]]
+  name = "mvvm"
+  layer = "state"
+  tag = "v0.13.0"
+  docs = "state/mvvm/"
+  blurb = "`Observable`, `Command`, `ObservableList`, binders, and an undo stack. Generics, no reflection; the core imports **no widget package**, so one view-model drives pixels and cells."
+[[params.modules]]
+  name = "mvvmtk"
+  layer = "state"
+  tag = "v0.14.1"
+  docs = "state/mvvm/#mvvmtk-one-call-per-widget"
+  blurb = "One call binds a toolkit widget to a view-model, with the widget's real field and callback names filled in. Every binder returns an `unbind`."
+[[params.modules]]
+  name = "data"
+  layer = "state"
+  tag = "v0.3.0"
+  docs = "state/data/"
+  blurb = "Typed records, a pure query engine, and a store whose in-process and gRPC proxies return **byte-identical** views — natively and in wasm."
+[[params.modules]]
+  name = "window"
+  layer = "surface"
+  tag = "v0.86.1"
+  docs = "surfaces/native-window/"
+  blurb = "One `Open`/`Run` over **X11, Wayland, Cocoa, Win32, GTK4, Android and wasmbox**. X11 is the core protocol written from scratch over the socket; macOS and Windows are reached without cgo."
+[[params.modules]]
+  name = "application"
+  layer = "surface"
+  tag = "v0.7.0"
+  docs = "surfaces/application/"
+  blurb = "The lifecycle above a window: the run loop, a tray icon attached once the first frame is up, the live system appearance, the accessibility tree, a ready hook."
+[[params.modules]]
+  name = "tray"
+  layer = "surface"
+  tag = "v0.14.0"
+  docs = "surfaces/application/#the-tray"
+  blurb = "A menu-bar or notification-area icon with menus, submenus and checkboxes: `NSStatusItem`, `Shell_NotifyIcon`, `StatusNotifierItem` over DBus. No build tag; `ErrNoBackend` where there is none."
+[[params.modules]]
+  name = "webcanvas"
+  layer = "surface"
+  tag = "v0.2.0"
+  docs = "surfaces/browser/"
+  blurb = "A scene in a plain browser `<canvas>`: no compositor, no `SharedArrayBuffer`, no cross-origin isolation. Any static host serves it."
+[[params.modules]]
+  name = "tui"
+  layer = "surface"
+  tag = "v0.61.0"
+  docs = "surfaces/terminal/"
+  blurb = "The same widgets through the cell painter, an interactive runner (raw mode, alternate screen, resize), and cell-native widgets, a syntax-highlighting editor among them."
+[[params.modules]]
+  name = "android"
+  layer = "surface"
+  tag = "v0.15.0"
+  docs = "surfaces/android/"
+  blurb = "An installable APK whose whole interface is painted by a `CGO_ENABLED=0` Go process; a thin Java host blits a shared memfd and owns nothing else."
+[[params.modules]]
+  name = "svg"
+  layer = "surface"
+  tag = "v0.6.0"
+  docs = "surfaces/snapshots/"
+  blurb = "Any RGBA render as a self-contained, bit-exact SVG, or as a PNG. The widget catalogue rendered this way: [go-widgets.github.io/svg](https://go-widgets.github.io/svg/)."
+[[params.modules]]
+  name = "mvvmlint"
+  layer = "rules"
+  tag = "v0.4.0"
+  docs = "guard-rails/mvvmlint/"
+  blurb = "A `go vet` check that fails a pull request assigning a widget's state field by hand, or shipping widgets with no view-model."
+[[params.modules]]
+  name = "bricolint"
+  layer = "rules"
+  tag = "v0.4.0"
+  docs = "guard-rails/bricolint/"
+  blurb = "A `go vet` check against hand-drawn UI: no painter primitives in application code, no widget rebuilt on every frame. An exemption must give its reason."
+[[params.modules]]
+  name = "app-template"
+  layer = "app"
+  tag = "v0.4.0"
+  docs = "getting-started/"
+  blurb = "The starting point: a browser app with its state in a view-model, a 100% coverage gate and the MVVM gate, green from the first commit."
+[[params.modules]]
+  name = "gallery"
+  layer = "app"
+  tag = "v0.6.0"
+  docs = "modules/"
+  blurb = "Every widget family, live in a browser canvas, and driven: drag Kanban cards, resize Gantt bars, switch themes. [Open it](https://go-widgets.github.io/gallery/)."
+[[params.modules]]
+  name = "desktop"
+  layer = "app"
+  tag = "v0.19.0"
+  docs = "modules/"
+  blurb = "A desktop shell — dock, launcher, application menu, file grid, notifications — composed from go-freedesktop and go-widgets, from one source natively and in wasmdesk."
+
+# The surfaces, one card each in "Where it paints". "how" is what reaches the
+# screen on that surface, from the back-end's own code.
+[[params.surfaces]]
+  name = "Linux"
+  how = "**Wayland** (xdg-shell) or **X11** (the core protocol over the socket, MIT-SHM), chosen from the session; **GTK4** on request."
+[[params.surfaces]]
+  name = "macOS"
+  how = "An `NSWindow` through the Objective-C runtime with purego; a menu-bar `NSStatusItem` for the tray."
+[[params.surfaces]]
+  name = "Windows"
+  how = "A Win32 window through the process's own DLLs and a Go window procedure; `Shell_NotifyIcon` for the tray."
+[[params.surfaces]]
+  name = "Browser"
+  how = "A plain `<canvas>` with **webcanvas**, or a window of the **wasmdesk** compositor over a `MessagePort` and a shared buffer."
+[[params.surfaces]]
+  name = "Terminal"
+  how = "The cell painter, serialised as 24-bit ANSI; an interactive runner with raw mode and the alternate screen."
+[[params.surfaces]]
+  name = "Android"
+  how = "A real APK: a Java host blits a memfd the Go process paints; input and accessibility cross a socket. arm64."

@@ -1,0 +1,43 @@
+name: ci
+
+on:
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    name: the site builds and names every module
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: peaceiris/actions-hugo@v3
+        with:
+          hugo-version: "0.167.0"
+          extended: true
+      - run: hugo --minify
+      # A page that builds and says nothing is a page nobody notices is empty.
+      # The list below is typed here on purpose, apart from hugo.toml: a check
+      # that read the page's own data would agree with the page whatever it
+      # left out. A new module is added in both places.
+      - name: every module is on it
+        run: |
+          for repo in android app-template application bricolint data desktop \
+                      gallery isoicons mvvm mvvmlint mvvmtk painter skin svg \
+                      toolkit tray tui webcanvas window; do
+            grep -q "github.com/go-widgets/$repo\"" public/index.html \
+              || grep -q "github.com/go-widgets/$repo>" public/index.html \
+              || { echo "::error::$repo is not on the page"; exit 1; }
+          done
+          echo "the page names every module this org has"
+      # The shared stylesheet takes its colours as parameters. html/template
+      # turns a value it will not put in CSS into ZgotmplZ without failing, and
+      # the page then renders with no brand colour at all.
+      - name: no colour was swallowed by the template
+        run: |
+          if grep -q ZgotmplZ public/index.html; then
+            echo "::error::a [params.brand] value rendered as ZgotmplZ"; exit 1
+          fi

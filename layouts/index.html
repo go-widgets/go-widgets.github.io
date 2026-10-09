@@ -3,159 +3,125 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>{{ .Site.Title }} — pure-Go widget toolkits, byte-buffer first</title>
-<meta name="description" content="go-widgets — a family of pure-Go widget toolkits that render into an RGBA byte buffer. No JS, no DOM, no canvas dependency; works in js/wasm, on native Go targets, and in headless tests.">
-<style>
-  :root {
-    --bg: #ffffff; --fg: #1b1f24; --muted: #57606a; --card: #f6f8fa;
-    --border: #d8dbe6; --accent: #0D9488; --accent-2: #14b8a6; --accent-fg: #ffffff;
-    --ready: #1a7f37; --active: #7c3aed; --planned: #9a6700;
-  }
-  @media (prefers-color-scheme: dark) {
-    :root:not([data-theme]) {
-      --bg: #0b0d12; --fg: #e6e8f0; --muted: #9aa0b4; --card: #141826;
-      --border: #262c40; --accent: #14b8a6; --accent-2: #2dd4bf; --accent-fg: #0b0d12;
-      --ready: #3fb950; --active: #a78bfa; --planned: #d29922;
-    }
-  }
-  :root[data-theme="dark"] {
-    --bg: #0b0d12; --fg: #e6e8f0; --muted: #9aa0b4; --card: #141826;
-    --border: #262c40; --accent: #14b8a6; --accent-2: #2dd4bf; --accent-fg: #0b0d12;
-    --ready: #3fb950; --active: #a78bfa; --planned: #d29922;
-  }
-  .theme-toggle {
-    position: fixed; top: 14px; right: 14px; z-index: 10;
-    font: inherit; font-size: .8rem; cursor: pointer; padding: 6px 12px;
-    color: var(--fg); background: var(--card); border: 1px solid var(--border); border-radius: 999px;
-  }
-  * { box-sizing: border-box; }
-  body {
-    margin: 0; background: var(--bg); color: var(--fg);
-    font: 16px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
-  }
-  .wrap { max-width: 920px; margin: 0 auto; padding: 0 20px; }
-  header {
-    padding: 84px 0 40px; text-align: center;
-    background:
-      radial-gradient(900px 320px at 50% -40px, color-mix(in srgb, var(--accent-2) 20%, transparent), transparent 70%);
-  }
-  .logo { display: block; margin: 0 auto 18px; border-radius: 22px; filter: drop-shadow(0 8px 28px color-mix(in srgb, var(--accent) 35%, transparent)); }
-  h1 { font-size: 2.7rem; margin: 0 0 .3em; letter-spacing: -.02em; }
-  .tagline { font-size: 1.2rem; color: var(--muted); margin: 0 auto; max-width: 660px; }
-  .pills { margin: 22px 0 0; }
-  .pill {
-    display: inline-block; margin: 4px; padding: 3px 10px; font-size: .82rem;
-    color: var(--muted); background: var(--card); border: 1px solid var(--border); border-radius: 999px;
-  }
-  .cta { margin: 30px 0 0; }
-  .badges { margin: 18px 0 0; }
-  .badges a { margin: 0 3px; text-decoration: none; }
-  .badges img { vertical-align: middle; }
-  .btn {
-    display: inline-block; padding: 10px 18px; margin: 4px; border-radius: 8px; text-decoration: none;
-    font-weight: 600; border: 1px solid var(--border);
-  }
-  .btn .icon{display:inline-block;vertical-align:-0.15em;margin-right:.45em}
-  .btn.primary { background: linear-gradient(135deg, var(--accent-2), var(--accent)); color: var(--accent-fg); border-color: var(--accent); }
-  .btn.ghost { color: var(--fg); background: transparent; }
-  .lead { color: var(--fg); max-width: 760px; margin: 8px auto 0; text-align: center; }
-  .lead code { background: var(--card); border: 1px solid var(--border); border-radius: 6px; padding: 1px 6px; }
-  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; padding: 24px 0 8px; }
-  .card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 18px 20px; }
-  .card h3 { margin: 0 0 .35em; font-size: 1.2rem; display: flex; align-items: center; justify-content: space-between; gap: 10px; }
-  .card p { margin: 0; color: var(--fg); }
-  .card p code { background: var(--bg); border: 1px solid var(--border); border-radius: 6px; padding: 1px 6px; }
-  .status { font-size: .72rem; font-weight: 700; text-transform: uppercase; letter-spacing: .04em; padding: 2px 8px; border-radius: 999px; border: 1px solid var(--border); white-space: nowrap; }
-  .status.ready { color: var(--ready); }
-  .status.active { color: var(--active); }
-  .status.planned { color: var(--planned); }
-  pre.snippet { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 18px; overflow-x: auto; font-size: .9rem; margin: 24px auto; max-width: 760px; }
-  .principles { color: var(--muted); text-align: center; padding: 10px 0 0; }
-  footer { color: var(--muted); text-align: center; padding: 40px 0 56px; font-size: .9rem; }
-  a { color: var(--accent); }
-</style>
-<script>
-  (function(){var m=localStorage.getItem('theme');if(m&&m!=='system')document.documentElement.setAttribute('data-theme',m);})();
-</script>
+<title>{{ .Site.Title }} — one widget tree, painted by Go, on every surface</title>
+<meta name="description" content="go-widgets is a pure-Go widget toolkit and every surface it paints on: a native window on X11, Wayland, macOS and Windows, a browser canvas, a terminal, an Android APK. One widget tree, drawn by the toolkit itself, CGO_ENABLED=0 on every target.">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+{{ partial "styles.html" . }}
 </head>
-<body>
-  <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Toggle light, dark or system theme"><span id="theme-label">🖥️ System</span></button>
-  <header class="wrap">
-    <img class="logo" width="88" height="88" alt="go-widgets" src="/img/logo.svg">
-    <h1>go-widgets</h1>
-    <p class="tagline">Pure-Go widget toolkits that render into a byte buffer. Works everywhere Go runs.</p>
-    <div class="pills">
-      <span class="pill">pure Go · CGO=0</span>
-      <span class="pill">byte-buffer first</span>
-      <span class="pill">100% statement coverage</span>
-      <span class="pill">GTK-theme aware</span>
-      <span class="pill">runs in js/wasm</span>
-      <span class="pill">runs on native</span>
-      <span class="pill">BSD-3-Clause</span>
+<body class="lm">
+  <header class="nav"><div class="wrap">
+    <a class="brand" href="/"><img class="glyph" src="/img/logo.svg" width="32" height="32" alt="go-widgets logo"> go-widgets</a>
+    <nav><a href="#why">Why</a><a href="#surfaces">Surfaces</a><a href="#eco">Modules</a></nav>
+    {{ partial "theme-toggle.html" . }}
+    <a class="btn btn-ghost" href="https://github.com/go-widgets">{{ partial "icons/github.html" . }}GitHub</a>
+  </div></header>
+
+  <div class="hero"><div class="wrap">
+    <div>
+      <h1 class="head">One widget tree,<br><span class="accent">every surface.</span></h1>
+      <p class="sub"><b>A widget that calls the platform's own button is as portable as the least capable platform it targets.</b> go-widgets draws every widget itself, through one small painter interface, and lets a back-end decide whether that becomes the pixels of a window, a browser canvas, an Android surface — or the cells of a terminal. Pure Go, <code>CGO_ENABLED=0</code>. BSD-3-Clause.</p>
+      <div class="cta">
+        <a class="btn btn-primary" href="https://go-widgets.github.io/docs/">{{ partial "icons/book.html" . }}Read the documentation →</a>
+        <a class="btn btn-ghost" href="https://go-widgets.github.io/gallery/">{{ partial "icons/play.html" . }}Try the live gallery</a>
+        <a class="btn btn-ghost" href="https://github.com/go-widgets/toolkit">{{ partial "icons/github.html" . }}Browse the source</a>
+      </div>
+      <div class="trust"><span><b>160</b> widget types</span><span><b>7</b> window back-ends, one <code>Open</code></span><span><b>CGO=0</b> on every target</span></div>
     </div>
-    <div class="cta">
-      <a class="btn primary" href="https://go-widgets.github.io/gallery/">▶ live demo</a>
-      <a class="btn ghost" href="https://github.com/go-widgets/toolkit">{{ partial "icons/mark-github.html" . }}toolkit repo</a>
-      <a class="btn ghost" href="https://github.com/go-widgets/toolkit#readme">{{ partial "icons/book.html" . }}API + widgets</a>
-      <a class="btn ghost" href="https://github.com/go-widgets">{{ partial "icons/organization.html" . }}org</a>
+    <div class="term">
+      <div class="bar"><i style="background:#ff5f57"></i><i style="background:#febc2e"></i><i style="background:#28c840"></i><span class="t">go-widgets/window — zsh</span></div>
+{{/* Real transcript: go-widgets/window v0.86.1's cmd/windowdemo, built with
+     Go 1.27.1 on a Mac. Nothing here was typed by hand but the comments. The
+     last command is kept because its refusal is a fact about Go, not about
+     this code: android/arm64 is the only Android target Go links without cgo,
+     and the window module's CI asserts both halves of that. */}}
+<pre><span class="c-com"># one demo, cross-compiled from one machine, cgo off</span>
+<span class="c-cmd">$</span> for t in linux/amd64 linux/riscv64 \
+    linux/s390x darwin/arm64 windows/arm64 \
+    android/arm64 js/wasm; do
+  CGO_ENABLED=0 GOOS=${t%/*} GOARCH=${t#*/} \
+    go build -o /dev/null ./cmd/windowdemo \
+    && echo "ok   $t"
+  done
+<span class="c-out">ok   linux/amd64
+ok   linux/riscv64
+ok   linux/s390x
+ok   darwin/arm64
+ok   windows/arm64
+ok   android/arm64
+ok   js/wasm</span>
+
+<span class="c-com"># the one Go itself refuses</span>
+<span class="c-cmd">$</span> CGO_ENABLED=0 GOOS=android GOARCH=arm \
+    go build ./cmd/windowdemo
+<span class="c-key">android/arm requires external (cgo) linking, but cgo is not enabled</span></pre>
     </div>
-    <div class="badges">
-      <a href="https://pkg.go.dev/github.com/go-widgets/toolkit"><img alt="pkg.go.dev" src="https://img.shields.io/badge/pkg.go.dev-toolkit-007d9c?logo=go&logoColor=white"></a>
-      <img alt="Go" src="https://img.shields.io/badge/Go-1.26.4%2B-00ADD8?logo=go&logoColor=white">
-      <img alt="License" src="https://img.shields.io/badge/license-BSD--3--Clause-blue">
+  </div></div>
+
+  <div class="strip"><div class="wrap">
+    {{/* DERIVED from the module list, never typed next to it: a count written
+         beside the data it counts disagrees with it eventually, and nothing
+         fails when it does. */}}
+    <span class="lead-line">{{ len .Site.Params.modules }} modules — <b>one widget tree, drawn the same way everywhere</b></span>
+    <div class="mods">{{ range .Site.Params.modules }}<a href="https://github.com/go-widgets/{{ .name }}">{{ .name }}</a>{{ end }}</div>
+  </div></div>
+
+  <section id="why"><div class="wrap">
+    <span class="eyebrow">Why go-widgets</span>
+    <h2>A widget never learns <i>where it is drawn</i>.</h2>
+    <p class="lead">Its <code>Draw</code> talks to a painter: fill a rectangle, stroke one, set a pixel, draw text. Whether those calls become pixels or terminal cells is the back-end's business. That is the whole reason one widget tree runs in a native window, a browser and a terminal without a line of conditional code.</p>
+    <div class="grid">
+      <div class="card"><div class="ico">🖌️</div><h3>Drawn by the toolkit, everywhere</h3><p>No webview, no system widget set, no C toolchain. 160 widget types — a data suite with Table, Kanban, Gantt and an event calendar, eight charts, menus, dialogs — drawn the same way on every surface, tested once.</p></div>
+      <div class="card"><div class="ico">🧭</div><h3>Chosen by what is there</h3><p><code>window.Open</code> takes no back-end argument. It reads the environment — the platform, <code>$WAYLAND_DISPLAY</code>, <code>$DISPLAY</code>, an Android host's socket — and opens the window that can work. The same Android binary dials its host inside an APK and opens a Linux window under Termux.</p></div>
+      <div class="card"><div class="ico">🔌</div><h3>Without cgo, all the way down</h3><p>X11 is the core protocol written from scratch over the socket. macOS is reached through the Objective-C runtime, Windows through the process's own DLLs, both from Go. Android, which hands no surface to a CGO-free process, gets a thin Java host that only blits.</p></div>
+      <div class="card"><div class="ico">🔁</div><h3>State lives in a view-model</h3><p>Observables, commands and lists, bound to widgets once. The core imports no widget package, so one view-model drives the pixel widgets and the terminal ones. <a href="https://go-widgets.github.io/docs/latest/guard-rails/mvvmlint/">mvvmlint</a> fails a pull request that assigns a widget's field by hand.</p></div>
+      <div class="card"><div class="ico">♿</div><h3>Accessibility it publishes itself</h3><p>A toolkit that paints its own pixels gives a screen reader nothing — unless it says what it drew. Widgets report a role, a name and a value; the back-ends publish them: AT-SPI on Linux, a virtual view hierarchy on Android, pulled only when something reads it.</p></div>
+      <div class="card"><div class="ico">🔤</div><h3>Text without a C library</h3><p>One call switches the whole UI to anti-aliased, shaped text in a bundled face, rasterised by <a href="https://go-opentype.github.io/">go-opentype</a> in Go — no FreeType, no system font lookup, the same in a browser. GTK and libadwaita themes load as a <code>Theme</code>.</p></div>
+      <div class="card"><div class="ico">🎨</div><h3>Widgets as data, when you want them</h3><p>A <a href="https://go-widgets.github.io/docs/latest/rendering/skin/">skin</a> describes a widget's parts, states and transitions in JSON, rendered by one engine. The toolkit's own button, switch and card, written as skins, render pixel for pixel the same.</p></div>
+      <div class="card"><div class="ico">🗂️</div><h3>The same data, local or remote</h3><p>A typed store queries an in-process proxy or a gRPC one over a WebSocket, and the conformance test requires the two to return <b>byte-identical</b> views — so a wasm client and a native one see the same rows.</p></div>
+      <div class="card"><div class="ico">⚖️</div><h3>Proven on real displays</h3><p>Pixels sampled from a real X11 server under Xvfb and from a macOS window in CI, clicks driven through a real Win32 window procedure on Windows 11, composited pixels read back from the wasmdesk compositor in Chromium, blits timed on an Android device. <a href="https://go-widgets.github.io/docs/latest/status/">What is only compiled</a> is said too.</p></div>
     </div>
-  </header>
+  </div></section>
 
-  <main class="wrap">
-    <p class="lead"><strong>go-widgets</strong> is a family of pure-Go widget toolkits with a single design axiom:
-      <em>every widget renders into a caller-supplied <code>[]byte</code></em>. That constraint keeps the surface
-      dependency-free (no JS, no DOM, no canvas), which is what lets the same widget code compose pixels in a
-      browser tab, a native window, or a headless CI test.</p>
-
-    <pre class="snippet"><code>import (
-    "github.com/go-widgets/toolkit"
-    "github.com/go-widgets/painter"
-)
-
-theme := toolkit.DefaultLight()
-btn := toolkit.NewButton("Click me", func() { println("clicked!") })
-btn.SetBounds(toolkit.Rect{X: 20, Y: 20, W: 120, H: 28})
-
-// A Painter is the render seam: PixelPainter → RGBA bytes (wasm/native),
-// CellPainter → a terminal grid. Same widget code, either backend.
-p := painter.NewPixelPainter(make([]byte, 4*width*height), width, height)
-btn.Draw(p, theme)                       // pixels land in p's buffer
-btn.OnEvent(toolkit.Event{Kind: toolkit.EventClick, X: 50, Y: 30})</code></pre>
-
-    <section class="grid">
-      {{ range .Site.Params.components }}
-      <article class="card">
-        <h3>{{ .name }} <span class="status {{ .status }}">{{ .status }}</span></h3>
-        <p>{{ .blurb | markdownify }}</p>
-      </article>
+  <section id="surfaces" style="padding-top:10px"><div class="wrap">
+    <span class="eyebrow">Where it paints</span>
+    <h2>{{ len .Site.Params.surfaces }} surfaces, <i>one widget tree</i>.</h2>
+    <div class="grid">
+      {{ range .Site.Params.surfaces }}
+      <div class="card"><h3>{{ .name }}</h3><p>{{ .how | markdownify }}</p></div>
       {{ end }}
-    </section>
+    </div>
+  </div></section>
 
-    <p class="principles">Every widget in the toolkit ships with a
-      <strong>100&nbsp;% statement coverage</strong> gate. Defensive dead code the coverage tool flags gets
-      DELETED (not annotated), so the coverage number stays honest. Builds are trivially cross-target because
-      the whole stack is pure Go with cgo disabled — no C toolchain, no runtime fetch, no vendored assets.
-      Everything is <strong>BSD-3-Clause</strong>.</p>
-  </main>
+  <section id="stats" style="padding-top:10px"><div class="wrap">
+    <div class="stats">
+      <div><div class="n">160</div><div class="l">widget types in <code>toolkit</code> v0.328.0, counted at that tag</div></div>
+      <div><div class="n">7</div><div class="l">window back-ends behind one <code>window.Open</code></div></div>
+      <div><div class="n">{{ len .Site.Params.modules }}</div><div class="l">modules, each <code>CGO_ENABLED=0</code></div></div>
+      {{/* Not "100% everywhere": mvvmtk has no coverage gate, and the docs'
+           status page says so. Eighteen do, and the number is what CI
+           enforces, not what was measured on somebody's laptop. */}}
+      <div><div class="n">18</div><div class="l">of them gated at 100% statement coverage in CI</div></div>
+    </div>
+  </div></section>
 
-  <footer class="wrap">
-    BSD-3-Clause · <a href="https://github.com/go-widgets">github.com/go-widgets</a>
-  </footer>
-  <script>
-  (function(){
-    var order=['system','light','dark'], root=document.documentElement;
-    var labels={system:'🖥️ System',light:'☀️ Light',dark:'🌙 Dark'};
-    function apply(m){ if(m==='system'){root.removeAttribute('data-theme');}else{root.setAttribute('data-theme',m);} localStorage.setItem('theme',m); var el=document.getElementById('theme-label'); if(el)el.textContent=labels[m]; }
-    var mode=localStorage.getItem('theme')||'system'; apply(mode);
-    var btn=document.getElementById('theme-toggle');
-    if(btn) btn.addEventListener('click',function(){ mode=order[(order.indexOf(mode)+1)%order.length]; apply(mode); });
-  })();
-  </script>
+  <section id="eco" style="padding-top:10px"><div class="wrap">
+    <span class="eyebrow">The modules</span>
+    <h2>Pick the layer <i>you need</i>.</h2>
+    <div class="grid">
+      {{ range .Site.Params.modules }}
+      <div class="card"><h3><a href="https://github.com/go-widgets/{{ .name }}"><code>{{ .name }}</code></a> <span class="tag active">{{ .tag }}</span></h3><p>{{ .blurb | markdownify }} <a class="backlink" href="https://go-widgets.github.io/docs/latest/{{ .docs }}">Docs →</a></p></div>
+      {{ end }}
+    </div>
+  </div></section>
+
+  <section style="padding-top:6px"><div class="wrap">
+    <div class="band">
+      <h2>A UI toolkit that ships like Go.</h2>
+      <p>No cgo, no webview, no runtime to install. One <code>go build</code> per target, from any machine, and the same widget tree in a window, a browser tab, a terminal or an APK. Start from <a href="https://github.com/go-widgets/app-template">app-template</a>: MVVM-compliant and green from the first commit.</p>
+      <a class="btn btn-ghost" href="https://go-widgets.github.io/docs/">{{ partial "icons/book.html" . }}Read the documentation →</a>
+    </div>
+  </div></section>
+
+  <footer><div class="wrap"><span>© the go-widgets authors · BSD-3-Clause</span><span>Pure Go · CGO_ENABLED=0 · no frameworks</span></div></footer>
 </body>
 </html>
