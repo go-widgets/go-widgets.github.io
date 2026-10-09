@@ -3,9 +3,11 @@
 The landing page for [go-widgets](https://github.com/go-widgets), built with
 Hugo and deployed by GitHub Actions to <https://go-widgets.github.io/>.
 
-It is laid out like the [go-fileshare](https://go-fileshare.github.io/) and
-[go-authn](https://go-authn.github.io/) landings. `layouts/partials/styles.html`
-is the same file as theirs, byte for byte: it takes its colours from
+It is laid out like the [go-fileshare](https://go-fileshare.github.io/) landing,
+with the "Fork me on GitHub" ribbon of [go-ndarray](https://go-ndarray.github.io/)
+in place of the GitHub buttons. `layouts/partials/styles.html` and
+`layouts/partials/fork-ribbon.html` are go-ndarray's files, byte for byte (its
+stylesheet is go-fileshare's plus the ribbon): it takes its colours from
 `[params.brand]` in `hugo.toml`, and only those values differ (go-widgets'
 teal, from [go-widgets/brand](https://github.com/go-widgets/brand)). Fix the
 stylesheet in one org, copy it to the others unchanged.
@@ -25,6 +27,7 @@ Hugo output while the workflow reports success.
 |---|---|
 | `layouts/index.html` | the page |
 | `layouts/partials/styles.html` | the shared stylesheet and theme toggle script |
+| `layouts/partials/fork-ribbon.html` | the corner ribbon, linking `go-widgets/toolkit` |
 | `layouts/partials/icons/` | Octicons (MIT, `OCTICONS-LICENSE`), copied verbatim |
 | `hugo.toml` | `[params.brand]`, one `[[params.modules]]` per module, one `[[params.surfaces]]` per surface |
 
