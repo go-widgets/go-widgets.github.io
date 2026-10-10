@@ -47,7 +47,7 @@ disableKinds = ["taxonomy", "term", "RSS", "sitemap", "404"]
 [[params.modules]]
   name = "painter"
   layer = "rendering"
-  tag = "v0.15.0"
+  tag = "v0.16.0"
   docs = "rendering/painter/"
   blurb = "The seam every widget draws through: seven primitives, optional capabilities (clip, paths, images, masks, faces), a **pixel** painter and a **cell** painter."
 [[params.modules]]
@@ -59,7 +59,7 @@ disableKinds = ["taxonomy", "term", "RSS", "sitemap", "404"]
 [[params.modules]]
   name = "skin"
   layer = "rendering"
-  tag = "v0.2.0"
+  tag = "v0.3.0"
   docs = "rendering/skin/"
   blurb = "A widget's parts, states and transitions in a `.skin.json` file. The toolkit's button, check, switch, chip and card, rewritten as skins, render **pixel for pixel** the same."
 [[params.modules]]
@@ -71,43 +71,43 @@ disableKinds = ["taxonomy", "term", "RSS", "sitemap", "404"]
 [[params.modules]]
   name = "mvvm"
   layer = "state"
-  tag = "v0.13.0"
+  tag = "v0.15.0"
   docs = "state/mvvm/"
   blurb = "`Observable`, `Command`, `ObservableList`, binders, and an undo stack. Generics, no reflection; the core imports **no widget package**, so one view-model drives pixels and cells."
 [[params.modules]]
   name = "mvvmtk"
   layer = "state"
-  tag = "v0.14.1"
+  tag = "v0.15.0"
   docs = "state/mvvm/#mvvmtk-one-call-per-widget"
   blurb = "One call binds a toolkit widget to a view-model, with the widget's real field and callback names filled in. Every binder returns an `unbind`."
 [[params.modules]]
   name = "data"
   layer = "state"
-  tag = "v0.3.0"
+  tag = "v0.4.0"
   docs = "state/data/"
   blurb = "Typed records, a pure query engine, and a store whose in-process and gRPC proxies return **byte-identical** views — natively and in wasm."
 [[params.modules]]
   name = "window"
   layer = "surface"
-  tag = "v0.86.1"
+  tag = "v0.89.0"
   docs = "surfaces/native-window/"
-  blurb = "One `Open`/`Run` over **X11, Wayland, Cocoa, Win32, GTK4, Android and wasmbox**. X11 is the core protocol written from scratch over the socket; macOS and Windows are reached without cgo."
+  blurb = "One `Open`/`Run` over **X11, Wayland, GTK4, Cocoa, Win32, Android, wasmbox and a browser tab**. X11 is the core protocol written from scratch over the socket; macOS and Windows are reached without cgo."
 [[params.modules]]
   name = "application"
   layer = "surface"
-  tag = "v0.7.0"
+  tag = "v0.8.0"
   docs = "surfaces/application/"
   blurb = "The lifecycle above a window: the run loop, a tray icon attached once the first frame is up, the live system appearance, the accessibility tree, a ready hook."
 [[params.modules]]
   name = "tray"
   layer = "surface"
-  tag = "v0.14.0"
+  tag = "v0.15.0"
   docs = "surfaces/application/#the-tray"
   blurb = "A menu-bar or notification-area icon with menus, submenus and checkboxes: `NSStatusItem`, `Shell_NotifyIcon`, `StatusNotifierItem` over DBus. No build tag; `ErrNoBackend` where there is none."
 [[params.modules]]
   name = "webcanvas"
   layer = "surface"
-  tag = "v0.2.0"
+  tag = "v0.4.1"
   docs = "surfaces/browser/"
   blurb = "A scene in a plain browser `<canvas>`: no compositor, no `SharedArrayBuffer`, no cross-origin isolation. Any static host serves it."
 [[params.modules]]
@@ -119,31 +119,31 @@ disableKinds = ["taxonomy", "term", "RSS", "sitemap", "404"]
 [[params.modules]]
   name = "android"
   layer = "surface"
-  tag = "v0.15.0"
+  tag = "v0.16.0"
   docs = "surfaces/android/"
   blurb = "An installable APK whose whole interface is painted by a `CGO_ENABLED=0` Go process; a thin Java host blits a shared memfd and owns nothing else."
 [[params.modules]]
   name = "svg"
   layer = "surface"
-  tag = "v0.6.0"
+  tag = "v0.7.0"
   docs = "surfaces/snapshots/"
   blurb = "Any RGBA render as a self-contained, bit-exact SVG, or as a PNG. The widget catalogue rendered this way: [go-widgets.github.io/svg](https://go-widgets.github.io/svg/)."
 [[params.modules]]
   name = "mvvmlint"
   layer = "rules"
-  tag = "v0.4.0"
+  tag = "v0.4.1"
   docs = "guard-rails/mvvmlint/"
   blurb = "A `go vet` check that fails a pull request assigning a widget's state field by hand, or shipping widgets with no view-model."
 [[params.modules]]
   name = "bricolint"
   layer = "rules"
-  tag = "v0.4.0"
+  tag = "v0.4.1"
   docs = "guard-rails/bricolint/"
   blurb = "A `go vet` check against hand-drawn UI: no painter primitives in application code, no widget rebuilt on every frame. An exemption must give its reason."
 [[params.modules]]
   name = "app-template"
   layer = "app"
-  tag = "v0.4.0"
+  tag = "v0.5.0"
   docs = "getting-started/"
   blurb = "The starting point: a browser app with its state in a view-model, a 100% coverage gate and the MVVM gate, green from the first commit."
 [[params.modules]]
@@ -172,7 +172,7 @@ disableKinds = ["taxonomy", "term", "RSS", "sitemap", "404"]
   how = "A Win32 window through the process's own DLLs and a Go window procedure; `Shell_NotifyIcon` for the tray."
 [[params.surfaces]]
   name = "Browser"
-  how = "A plain `<canvas>` with **webcanvas**, or a window of the **wasmdesk** compositor over a `MessagePort` and a shared buffer."
+  how = "A plain `<canvas>`, through **webcanvas** or `window.Open` itself, or a window of the **wasmdesk** compositor over a `MessagePort` and a shared buffer."
 [[params.surfaces]]
   name = "Terminal"
   how = "The cell painter, serialised as 24-bit ANSI; an interactive runner with raw mode and the alternate screen."
