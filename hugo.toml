@@ -5,6 +5,16 @@ disableKinds = ["taxonomy", "term", "RSS", "sitemap", "404"]
 [markup.goldmark.renderer]
   unsafe = true
 
+# The design -- layouts/partials/styles.html, theme-toggle.html,
+# fork-ribbon.html and icons/{github,book}.html -- comes from the shared Hugo
+# module github.com/go-fleettools/landingkit, not from copies here: the copies
+# drifted. Its version is pinned in go.mod (Renovate bumps it), and kit.go
+# keeps `go mod tidy` from deleting that requirement. A file of the same name
+# under layouts/partials/ would silently override the module's.
+[module]
+  [[module.imports]]
+    path = "github.com/go-fleettools/landingkit"
+
 # The shared stylesheet (layouts/partials/styles.html, the same file
 # go-fileshare and go-authn use) reads its colours from here and defaults to
 # their cyan. go-widgets' mark is teal (#0D9488, go-widgets/brand), so every
