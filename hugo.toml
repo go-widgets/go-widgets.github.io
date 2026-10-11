@@ -137,7 +137,7 @@ disableKinds = ["taxonomy", "term", "RSS", "sitemap", "404"]
 [[params.modules]]
   name = "mvvmlint"
   layer = "rules"
-  tag = "v0.4.1"
+  tag = "v0.4.2"
   docs = "guard-rails/mvvmlint/"
   blurb = "A `go vet` check that fails a pull request assigning a widget's state field by hand, or shipping widgets with no view-model."
 [[params.modules]]
