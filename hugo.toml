@@ -59,7 +59,7 @@ disableKinds = ["taxonomy", "term", "RSS", "sitemap", "404"]
 [[params.modules]]
   name = "toolkit"
   layer = "rendering"
-  tag = "v0.328.0"
+  tag = "v0.329.0"
   docs = "rendering/toolkit/"
   blurb = "**160 widget types**: inputs, containers with swappable layouts, menus and dialogs, a data suite (Table, TreeTable, Kanban, Gantt, Agenda), eight charts. GTK themes, OpenType text, touch, accessibility."
 [[params.modules]]
@@ -71,7 +71,7 @@ disableKinds = ["taxonomy", "term", "RSS", "sitemap", "404"]
 [[params.modules]]
   name = "isoicons"
   layer = "rendering"
-  tag = "v0.3.0"
+  tag = "v0.4.0"
   docs = "modules/"
   blurb = "Isometric icon packs — 44 cloud-native, 9 AWS — for the toolkit's isometric diagrams. Assets vendored unmodified, each under its own licence."
 [[params.modules]]
@@ -119,7 +119,7 @@ disableKinds = ["taxonomy", "term", "RSS", "sitemap", "404"]
 [[params.modules]]
   name = "tui"
   layer = "surface"
-  tag = "v0.61.0"
+  tag = "v0.62.0"
   docs = "surfaces/terminal/"
   blurb = "The same widgets through the cell painter, an interactive runner (raw mode, alternate screen, resize), and cell-native widgets, a syntax-highlighting editor among them."
 [[params.modules]]
@@ -155,13 +155,13 @@ disableKinds = ["taxonomy", "term", "RSS", "sitemap", "404"]
 [[params.modules]]
   name = "gallery"
   layer = "app"
-  tag = "v0.6.0"
+  tag = "v0.7.0"
   docs = "modules/"
   blurb = "Every widget family, live in a browser canvas, and driven: drag Kanban cards, resize Gantt bars, switch themes. [Open it](https://go-widgets.github.io/gallery/)."
 [[params.modules]]
   name = "desktop"
   layer = "app"
-  tag = "v0.19.0"
+  tag = "v0.20.0"
   docs = "modules/"
   blurb = "A desktop shell — dock, launcher, application menu, file grid, notifications — composed from go-freedesktop and go-widgets, from one source natively and in wasmdesk."
 
