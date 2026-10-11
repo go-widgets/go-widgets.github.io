@@ -95,13 +95,13 @@ disableKinds = ["taxonomy", "term", "RSS", "sitemap", "404"]
 [[params.modules]]
   name = "window"
   layer = "surface"
-  tag = "v0.89.0"
+  tag = "v0.89.1"
   docs = "surfaces/native-window/"
   blurb = "One `Open`/`Run` over **X11, Wayland, GTK4, Cocoa, Win32, Android, wasmbox and a browser tab**. X11 is the core protocol written from scratch over the socket; macOS and Windows are reached without cgo."
 [[params.modules]]
   name = "application"
   layer = "surface"
-  tag = "v0.8.0"
+  tag = "v0.8.1"
   docs = "surfaces/application/"
   blurb = "The lifecycle above a window: the run loop, a tray icon attached once the first frame is up, the live system appearance, the accessibility tree, a ready hook."
 [[params.modules]]
