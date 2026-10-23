@@ -1,5 +1,5 @@
 module github.com/go-widgets/go-widgets.github.io
 
-go 1.27.2
+go 1.27.3
 
-require github.com/go-fleettools/landingkit v0.3.2
+require github.com/go-fleettools/landingkit v0.6.0
