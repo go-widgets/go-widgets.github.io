@@ -61,7 +61,7 @@ disableKinds = ["taxonomy", "term", "RSS", "sitemap", "404"]
   layer = "rendering"
   tag = "v0.329.0"
   docs = "rendering/toolkit/"
-  blurb = "**160 widget types**: inputs, containers with swappable layouts, menus and dialogs, an Office-style Ribbon, a data suite (Table, TreeTable, Kanban, Gantt, Agenda), eight charts. GTK themes, OpenType text, touch, accessibility."
+  blurb = "**160 widget types**: inputs, containers with swappable layouts, menus and dialogs, an Office-style Ribbon, a keyboard-accessible Splitter, a data suite (Table, TreeTable, Kanban, Gantt, Agenda), eight charts. GTK themes, OpenType text, touch, accessibility."
 [[params.modules]]
   name = "skin"
   layer = "rendering"
