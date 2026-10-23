@@ -185,3 +185,8 @@ disableKinds = ["taxonomy", "term", "RSS", "sitemap", "404"]
 [[params.surfaces]]
   name = "Android"
   how = "A real APK: a Java host blits a memfd the Go process paints; input and accessibility cross a socket. arm64."
+
+# The strip under the top bar: the code's licence and cgo, and the data
+# shipped under its own licence (read from its licence files).
+[params.mantra]
+  items = ["LICENSE=BSD-3-Clause", "CGO_ENABLED=0", "icons: Apache-2.0, CC0-1.0"]

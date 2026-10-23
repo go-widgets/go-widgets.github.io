@@ -19,7 +19,7 @@
   <div class="hero"><div class="wrap">
     <div>
       <h1 class="head">One widget tree,<br><span class="accent">every surface.</span></h1>
-      <p class="sub"><b>A widget that calls the platform's own button is as portable as the least capable platform it targets.</b> go-widgets draws every widget itself, through one small painter interface, and lets a back-end decide whether that becomes the pixels of a window, a browser canvas, an Android surface — or the cells of a terminal. Pure Go, <code>CGO_ENABLED=0</code>. BSD-3-Clause.</p>
+      <p class="sub"><b>A widget that calls the platform's own button is as portable as the least capable platform it targets.</b> go-widgets draws every widget itself, through one small painter interface, and lets a back-end decide whether that becomes the pixels of a window, a browser canvas, an Android surface — or the cells of a terminal. {{ if not (partial "mantra-on.html" $) }}Pure Go, <code>CGO_ENABLED=0</code>.{{ end }} {{ if not (partial "mantra-on.html" $) }}BSD-3-Clause.{{ end }}</p>
       <div class="cta">
         <a class="btn btn-primary" href="https://go-widgets.github.io/docs/">{{ partial "icons/book.html" . }}Read the documentation →</a>
         <a class="btn btn-ghost" href="https://go-widgets.github.io/gallery/">{{ partial "icons/play.html" . }}Try it in the browser</a>
@@ -123,6 +123,6 @@ ok   js/wasm</span>
     </div>
   </div></section>
 
-  <footer><div class="wrap"><span>© the go-widgets authors · BSD-3-Clause</span><span>Pure Go · CGO_ENABLED=0 · no frameworks</span></div></footer>
+  <footer><div class="wrap"><span>© the go-widgets authors{{ if not (partial "mantra-on.html" $) }} · BSD-3-Clause{{ end }}</span><span>Pure Go · {{ if not (partial "mantra-on.html" $) }}CGO_ENABLED=0 · {{ end }}no frameworks</span></div></footer>
 </body>
 </html>
