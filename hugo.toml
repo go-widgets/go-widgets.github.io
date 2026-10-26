@@ -59,9 +59,9 @@ disableKinds = ["taxonomy", "term", "RSS", "sitemap", "404"]
 [[params.modules]]
   name = "toolkit"
   layer = "rendering"
-  tag = "v0.329.0"
-  docs = "rendering/toolkit/"
-  blurb = "**160 widget types**: inputs, containers with swappable layouts, menus and dialogs, an Office-style Ribbon, a keyboard-accessible Splitter, a data suite (Table, TreeTable, Kanban, Gantt, Agenda), eight charts. GTK themes, OpenType text, touch, accessibility."
+  tag = "v0.345.0"
+  docs = "rendering/toolkit/#binary-size"
+  blurb = "**160 widget types**: inputs, containers with swappable layouts, menus and dialogs, an Office-style Ribbon, a keyboard-accessible Splitter, a data suite (Table, TreeTable, Kanban, Gantt, Agenda), eight charts. GTK themes, OpenType text, touch, accessibility. **A program links what it uses**: one `Label` in wasm went from 10.49 MB to 7.48 MB (2.88 to 2.13 MB gzipped). ⛔ `CollabText` moved to `toolkit/collabui` in v0.345.0."
 [[params.modules]]
   name = "skin"
   layer = "rendering"
