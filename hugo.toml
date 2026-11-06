@@ -53,13 +53,13 @@ disableKinds = ["taxonomy", "term", "RSS", "sitemap", "404"]
 [[params.modules]]
   name = "painter"
   layer = "rendering"
-  tag = "v0.16.0"
+  tag = "v0.17.0"
   docs = "rendering/painter/"
-  blurb = "The seam every widget draws through: seven primitives, optional capabilities (clip, paths, images, masks, faces), a **pixel** painter and a **cell** painter."
+  blurb = "The seam every widget draws through: seven primitives, optional capabilities (clip, paths, images, masks, faces, raster), a **pixel** painter and a **cell** painter."
 [[params.modules]]
   name = "toolkit"
   layer = "rendering"
-  tag = "v0.355.1"
+  tag = "v0.356.0"
   docs = "rendering/toolkit/#binary-size"
   blurb = "**160 widget types**: inputs, containers with swappable layouts, menus and dialogs, an Office-style Ribbon, a keyboard-accessible Splitter, a data suite (Table, TreeTable, Kanban, Gantt, Agenda), eight charts. GTK themes, OpenType text, touch, accessibility. **A program links what it uses**: one `Label` in wasm went from 10.49 MB to 5.66 MB (2.88 to 1.61 MB gzipped). ⛔ `CollabText` moved to `toolkit/collabui` in v0.345.0."
 [[params.modules]]
@@ -95,9 +95,9 @@ disableKinds = ["taxonomy", "term", "RSS", "sitemap", "404"]
 [[params.modules]]
   name = "window"
   layer = "surface"
-  tag = "v0.89.1"
-  docs = "surfaces/native-window/"
-  blurb = "One `Open`/`Run` over **X11, Wayland, GTK4, Cocoa, Win32, Android, wasmbox and a browser tab**. X11 is the core protocol written from scratch over the socket; macOS and Windows are reached without cgo."
+  tag = "v0.90.0"
+  docs = "surfaces/native-window/#on-the-gpu"
+  blurb = "One `Open`/`Run` over **X11, Wayland, GTK4, Cocoa, Win32, Android, wasmbox and a browser tab**. X11 is the core protocol written from scratch over the socket; macOS and Windows are reached without cgo. On macOS, `Config.GPU` draws frames with Metal into a `CAMetalLayer`, the same pixels at a sixth of the CPU time at 1920 × 1200."
 [[params.modules]]
   name = "application"
   layer = "surface"
