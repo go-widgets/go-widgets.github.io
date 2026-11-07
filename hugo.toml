@@ -113,9 +113,9 @@ disableKinds = ["taxonomy", "term", "RSS", "sitemap", "404"]
 [[params.modules]]
   name = "webcanvas"
   layer = "surface"
-  tag = "v0.4.1"
-  docs = "surfaces/browser/"
-  blurb = "A scene in a plain browser `<canvas>`: no compositor, no `SharedArrayBuffer`, no cross-origin isolation. Any static host serves it."
+  tag = "v0.9.0"
+  docs = "surfaces/browser/#on-the-gpu"
+  blurb = "A scene in a plain browser `<canvas>`: no compositor, no `SharedArrayBuffer`, no cross-origin isolation. Any static host serves it. Its `webcanvas/gpu` presenter draws through WebGPU, byte-identical to the CPU frame, and falls back to the 2D canvas without it."
 [[params.modules]]
   name = "tui"
   layer = "surface"
