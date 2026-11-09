@@ -59,15 +59,27 @@ disableKinds = ["taxonomy", "term", "RSS", "sitemap", "404"]
 [[params.modules]]
   name = "toolkit"
   layer = "rendering"
-  tag = "v0.360.0"
+  tag = "v0.362.1"
   docs = "rendering/toolkit/#binary-size"
-  blurb = "**160 widget types**: inputs, containers with swappable layouts, menus and dialogs, an Office-style Ribbon, a keyboard-accessible Splitter, a data suite (Table, TreeTable, Kanban, Gantt, Agenda), eight charts, a `FileTree` explorer that renames, deletes, moves and takes files dropped from outside — and marks each one's state in a versioned working tree. GTK themes, OpenType text, touch, accessibility. **A program links what it uses**: one `Label` in wasm went from 10.49 MB to 5.66 MB (2.88 to 1.61 MB gzipped). ⛔ `CollabText` moved to `toolkit/collabui` in v0.345.0."
+  blurb = "**160 widget types**: inputs, containers with swappable layouts, menus and dialogs, an Office-style Ribbon, a keyboard-accessible Splitter, a data suite (Table, TreeTable, Kanban, Gantt, Agenda), eight charts, a `FileTree` explorer that renames, deletes, moves and takes files dropped from outside — and marks each one's state in a versioned working tree. An xterm-subset `Terminal`, safe for untrusted output, with its own font and cell size. GTK themes, OpenType text, touch, accessibility. **A program links what it uses**: one `Label` in wasm went from 10.49 MB to 5.66 MB (2.88 to 1.61 MB gzipped). ⛔ `CollabText` moved to `toolkit/collabui` in v0.345.0."
 [[params.modules]]
   name = "skin"
   layer = "rendering"
   tag = "v0.3.0"
   docs = "rendering/skin/"
   blurb = "A widget's parts, states and transitions in a `.skin.json` file. The toolkit's button, check, switch, chip and card, rewritten as skins, render **pixel for pixel** the same."
+[[params.modules]]
+  name = "gpupainter"
+  layer = "rendering"
+  tag = "v0.4.0"
+  docs = "surfaces/browser/#on-the-gpu"
+  blurb = "A `painter.Painter` that records a frame for the GPU (go-gfx/gpu2d) instead of filling pixels: Metal on macOS, WebGPU in a browser. The whole widget gallery comes out **byte-identical** to the CPU painter."
+[[params.modules]]
+  name = "shellterm"
+  layer = "rendering"
+  tag = "v0.1.0"
+  docs = "modules/"
+  blurb = "A line-oriented terminal: the toolkit's `Terminal` and a line editor in front of a `Shell` you supply. History, Tab completion, Ctrl-R, Ctrl-C; keys handled off the UI goroutine. Shared by the wasmcontainers dashboard and wasmdesk."
 [[params.modules]]
   name = "isoicons"
   layer = "rendering"
@@ -86,6 +98,12 @@ disableKinds = ["taxonomy", "term", "RSS", "sitemap", "404"]
   tag = "v0.15.0"
   docs = "state/mvvm/#mvvmtk-one-call-per-widget"
   blurb = "One call binds a toolkit widget to a view-model, with the widget's real field and callback names filled in. Every binder returns an `unbind`."
+[[params.modules]]
+  name = "lineedit"
+  layer = "state"
+  tag = "v0.1.1"
+  docs = "modules/"
+  blurb = "A line editor as a pure model: keys in; the line, the cursor, completions and submitted lines out. History, reverse search, quoting-aware Tab completion, wide characters. Standard library only, fuzzed on every change."
 [[params.modules]]
   name = "data"
   layer = "state"

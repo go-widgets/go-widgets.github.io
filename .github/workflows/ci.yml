@@ -32,8 +32,8 @@ jobs:
       - name: every module is on it
         run: |
           for repo in android app-template application bricolint data desktop \
-                      gallery isoicons mvvm mvvmlint mvvmtk painter skin svg \
-                      toolkit tray tui webcanvas window; do
+                      gallery gpupainter isoicons lineedit mvvm mvvmlint mvvmtk \
+                      painter shellterm skin svg toolkit tray tui webcanvas window; do
             grep -q "github.com/go-widgets/$repo\"" public/index.html \
               || grep -q "github.com/go-widgets/$repo>" public/index.html \
               || { echo "::error::$repo is not on the page"; exit 1; }
