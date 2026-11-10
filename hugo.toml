@@ -59,9 +59,9 @@ disableKinds = ["taxonomy", "term", "RSS", "sitemap", "404"]
 [[params.modules]]
   name = "toolkit"
   layer = "rendering"
-  tag = "v0.362.1"
+  tag = "v0.364.0"
   docs = "rendering/toolkit/#binary-size"
-  blurb = "**160 widget types**: inputs, containers with swappable layouts, menus and dialogs, an Office-style Ribbon, a keyboard-accessible Splitter, a data suite (Table, TreeTable, Kanban, Gantt, Agenda), eight charts, a `FileTree` explorer that renames, deletes, moves and takes files dropped from outside — and marks each one's state in a versioned working tree. An xterm-subset `Terminal`, safe for untrusted output, with its own font and cell size. GTK themes, OpenType text, touch, accessibility. **A program links what it uses**: one `Label` in wasm went from 10.49 MB to 5.66 MB (2.88 to 1.61 MB gzipped). ⛔ `CollabText` moved to `toolkit/collabui` in v0.345.0."
+  blurb = "**160 widget types**: inputs, containers with swappable layouts, menus and dialogs, an Office-style Ribbon, a keyboard-accessible Splitter, a data suite (Table, TreeTable, Kanban, Gantt, Agenda), eight charts, a `FileTree` explorer that renames, deletes, moves and takes files dropped from outside — and, given a `vcs` repository, marks each one's version-control state (folders too, conflicts first), refreshed off the UI goroutine. An xterm-subset `Terminal`, safe for untrusted output, with its own font and cell size. GTK themes, OpenType text, touch, accessibility. **A program links what it uses**: one `Label` in wasm went from 10.49 MB to 5.66 MB (2.88 to 1.61 MB gzipped). ⛔ `CollabText` moved to `toolkit/collabui` in v0.345.0."
 [[params.modules]]
   name = "skin"
   layer = "rendering"
@@ -104,6 +104,12 @@ disableKinds = ["taxonomy", "term", "RSS", "sitemap", "404"]
   tag = "v0.1.1"
   docs = "modules/"
   blurb = "A line editor as a pure model: keys in; the line, the cursor, completions and submitted lines out. History, reverse search, quoting-aware Tab completion, wide characters. Standard library only, fuzzed on every change."
+[[params.modules]]
+  name = "vcs"
+  layer = "state"
+  tag = "v0.1.0"
+  docs = "modules/"
+  blurb = "What state each file of a working tree is in, and a `database/sql`-style registry of drivers to ask: `Detect` walks up to the nearest repository, as git does. Standard library only, so a toolkit links no version-control code; the git driver is the nested module `vcs/git` (go-git, pure Go, never the `git` binary). A `vcstest` fake tests a consumer without any VCS."
 [[params.modules]]
   name = "data"
   layer = "state"
