@@ -119,9 +119,9 @@ disableKinds = ["taxonomy", "term", "RSS", "sitemap", "404"]
 [[params.modules]]
   name = "window"
   layer = "surface"
-  tag = "v0.90.0"
+  tag = "v0.91.0"
   docs = "surfaces/native-window/#on-the-gpu"
-  blurb = "One `Open`/`Run` over **X11, Wayland, GTK4, Cocoa, Win32, Android, wasmbox and a browser tab**. X11 is the core protocol written from scratch over the socket; macOS and Windows are reached without cgo. On macOS, `Config.GPU` draws frames with Metal into a `CAMetalLayer`, the same pixels at a sixth of the CPU time at 1920 × 1200."
+  blurb = "One `Open`/`Run` over **X11, Wayland, GTK4, Cocoa, Win32, Android, wasmbox and a browser tab**. X11 is the core protocol written from scratch over the socket; macOS and Windows are reached without cgo. On macOS, `Config.GPU` draws frames with Metal into a `CAMetalLayer`, the same pixels at a sixth of the CPU time at 1920 × 1200. On X11 and Wayland it draws them with Vulkan and presents through the existing shm path: byte-identical on software Vulkan (lavapipe), hardware speed not yet measured."
 [[params.modules]]
   name = "application"
   layer = "surface"
