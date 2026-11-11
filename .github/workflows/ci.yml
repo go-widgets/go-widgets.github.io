@@ -33,7 +33,7 @@ jobs:
         run: |
           for repo in android app-template application bricolint data desktop \
                       gallery gpupainter isoicons lineedit mvvm mvvmlint mvvmtk \
-                      painter shellterm skin svg toolkit tray tui vcs webcanvas window; do
+                      painter shellterm skin svg toolkit tray tui vcs vt webcanvas window; do
             grep -q "github.com/go-widgets/$repo\"" public/index.html \
               || grep -q "github.com/go-widgets/$repo>" public/index.html \
               || { echo "::error::$repo is not on the page"; exit 1; }
