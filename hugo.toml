@@ -105,6 +105,12 @@ disableKinds = ["taxonomy", "term", "RSS", "sitemap", "404"]
   docs = "modules/"
   blurb = "A line editor as a pure model: keys in; the line, the cursor, completions and submitted lines out. History, reverse search, quoting-aware Tab completion, wide characters. Standard library only, fuzzed on every change."
 [[params.modules]]
+  name = "vt"
+  layer = "state"
+  tag = "v0.1.0"
+  docs = "modules/"
+  blurb = "A terminal emulator as a pure model: ECMA-48 and the xterm subset, bytes in, cells out. It answers nothing and drops OSC, DCS and APC. Standard library only, fuzzed on every change."
+[[params.modules]]
   name = "vcs"
   layer = "state"
   tag = "v0.1.0"
