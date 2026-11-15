@@ -219,4 +219,15 @@ disableKinds = ["taxonomy", "term", "RSS", "sitemap", "404"]
 # The strip under the top bar: the code's licence and cgo, and the data
 # shipped under its own licence (read from its licence files).
 [params.mantra]
+  goarch = ["amd64"]
   items = ["LICENSE=BSD-3-Clause", "CGO_ENABLED=0", "icons: Apache-2.0, CC0-1.0"]
+
+# The hero's buttons, rendered by landingkit's cta.html in the kit's order.
+[[params.cta]]
+  kind  = "docs"
+  href  = "https://go-widgets.github.io/docs/"
+  label = "Read the documentation →"
+[[params.cta]]
+  kind  = "link"
+  href  = "https://go-widgets.github.io/gallery/"
+  label = "Try it in the browser"
