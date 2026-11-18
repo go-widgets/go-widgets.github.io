@@ -145,7 +145,7 @@ disableKinds = ["taxonomy", "term", "RSS", "sitemap", "404"]
   layer = "surface"
   tag = "v0.9.0"
   docs = "surfaces/browser/#on-the-gpu"
-  blurb = "A scene in a plain browser `<canvas>`: no compositor, no `SharedArrayBuffer`, no cross-origin isolation. Any static host serves it. Its `webcanvas/gpu` presenter draws through WebGPU, byte-identical to the CPU frame, and falls back to the 2D canvas without it."
+  blurb = "A scene in a plain browser `<canvas>`: no compositor, no `SharedArrayBuffer`, no cross-origin isolation. Any static host serves it. A scene that reports its damage (v0.15.0) has only the changed rectangles copied and put on the canvas, and a frame with nothing changed puts nothing. Its `webcanvas/gpu` presenter draws through WebGPU, byte-identical to the CPU frame, and falls back to the 2D canvas without it."
 [[params.modules]]
   name = "tui"
   layer = "surface"
