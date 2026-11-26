@@ -87,6 +87,12 @@ disableKinds = ["taxonomy", "term", "RSS", "sitemap", "404"]
   docs = "modules/"
   blurb = "Isometric icon packs — 44 cloud-native, 9 AWS — for the toolkit's isometric diagrams. Assets vendored unmodified, each under its own licence."
 [[params.modules]]
+  name = "tabler-icons"
+  layer = "rendering"
+  tag = "v0.1.0"
+  docs = "rendering/toolkit/#svg-icons"
+  blurb = "Tabler Icons (MIT) as embedded SVG, drawn on a toolkit button with `toolkit.SVGGlyph`; a program links only the icons it names. One icon so far, `settings`."
+[[params.modules]]
   name = "mvvm"
   layer = "state"
   tag = "v0.15.0"
