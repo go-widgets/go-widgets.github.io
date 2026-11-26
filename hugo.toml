@@ -127,7 +127,7 @@ disableKinds = ["taxonomy", "term", "RSS", "sitemap", "404"]
   layer = "surface"
   tag = "v0.91.0"
   docs = "surfaces/native-window/#on-the-gpu"
-  blurb = "One `Open`/`Run` over **X11, Wayland, GTK4, Cocoa, Win32, Android, wasmbox and a browser tab**. X11 is the core protocol written from scratch over the socket; macOS and Windows are reached without cgo. On macOS, `Config.GPU` draws frames with Metal into a `CAMetalLayer`, the same pixels at a sixth of the CPU time at 1920 × 1200. A scene that reports its damage has only the changed rectangles presented on every back-end, GTK4 included (libgtk-4 4.16+, a partial texture update over a framebuffer shared with GTK, so a present copies no byte; the GTK4 window follows resizes). On X11 and Wayland it draws them with Vulkan and presents through the existing shm path: byte-identical on software Vulkan (lavapipe); go-gfx/gpu2d's Vulkan `Draw` is 52 times faster at 1080p than its CPU reference on one core, on a Radeon PRO W7700, the window itself not yet measured on hardware. **Input methods in painted fields**: one `toolkit.Composer` interface, wired to Cocoa `NSTextInputClient`, GTK4 `GtkIMContext` and Win32 IMM32; the preedit is bounded and fuzzed, and what is proven (macOS live, GTK under Xvfb) and what is not (a live Windows IME) is stated in the docs. **Native controls on GTK4 and Win32**: a context menu (a popover on GTK4, a real `HMENU` on Win32) and a picture in a button, `Config.HideOnClose`, and `Raise` on GTK4; built and read back in CI, a real pointer right-click and the modal Win32 menu loop are not driven."
+  blurb = "One `Open`/`Run` over **X11, Wayland, GTK4, Cocoa, Win32, Android, wasmbox and a browser tab**. X11 is the core protocol written from scratch over the socket; macOS and Windows are reached from Go alone. On macOS, `Config.GPU` draws frames with Metal into a `CAMetalLayer`, the same pixels at a sixth of the CPU time at 1920 × 1200. A scene that reports its damage has only the changed rectangles presented on every back-end, GTK4 included (libgtk-4 4.16+, a partial texture update over a framebuffer shared with GTK, so a present copies no byte; the GTK4 window follows resizes). On X11 and Wayland it draws them with Vulkan and presents through the existing shm path: byte-identical on software Vulkan (lavapipe); go-gfx/gpu2d's Vulkan `Draw` is 52 times faster at 1080p than its CPU reference on one core, on a Radeon PRO W7700, the window itself not yet measured on hardware. **Input methods in painted fields**: one `toolkit.Composer` interface, wired to Cocoa `NSTextInputClient`, GTK4 `GtkIMContext` and Win32 IMM32; the preedit is bounded and fuzzed, and what is proven (macOS live, GTK under Xvfb) and what is not (a live Windows IME) is stated in the docs. **Native controls on GTK4 and Win32**: a context menu (a popover on GTK4, a real `HMENU` on Win32) and a picture in a button, `Config.HideOnClose`, and `Raise` on GTK4; built and read back in CI, a real pointer right-click and the modal Win32 menu loop are not driven."
 [[params.modules]]
   name = "application"
   layer = "surface"
@@ -157,7 +157,7 @@ disableKinds = ["taxonomy", "term", "RSS", "sitemap", "404"]
   layer = "surface"
   tag = "v0.16.0"
   docs = "surfaces/android/"
-  blurb = "An installable APK whose whole interface is painted by a `CGO_ENABLED=0` Go process; a thin Java host blits a shared memfd and owns nothing else."
+  blurb = "An installable APK whose whole interface is painted by a Go process; a thin Java host blits a shared memfd and owns nothing else."
 [[params.modules]]
   name = "svg"
   layer = "surface"
@@ -228,6 +228,6 @@ disableKinds = ["taxonomy", "term", "RSS", "sitemap", "404"]
   href  = "https://go-widgets.github.io/docs/"
   label = "Read the documentation →"
 [[params.cta]]
-  kind  = "link"
+  kind  = "try"
   href  = "https://go-widgets.github.io/gallery/"
-  label = "Try it in the browser"
+  label = "Try it in your browser"
