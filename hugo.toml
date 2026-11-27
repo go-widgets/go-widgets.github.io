@@ -225,7 +225,9 @@ disableKinds = ["taxonomy", "term", "RSS", "sitemap", "404"]
 # The strip under the top bar: the code's licence and cgo, and the data
 # shipped under its own licence (read from its licence files).
 [params.mantra]
-  goarch = ["amd64"]
+  # What go-widgets/toolkit's CI RUNS `go test ./...` on (toolkit#629): amd64,
+  # arm64 (native), loong64, ppc64le, riscv64, s390x (QEMU, job test-qemu), js/wasm (node).
+  goarch = ["amd64", "arm64", "loong64", "ppc64le", "riscv64", "s390x", "wasm"]
   items = ["LICENSE=BSD-3-Clause", "CGO_ENABLED=0", "icons: Apache-2.0, CC0-1.0"]
 
 # The hero's buttons, rendered by landingkit's cta.html in the kit's order.
