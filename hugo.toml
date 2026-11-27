@@ -167,9 +167,9 @@ disableKinds = ["taxonomy", "term", "RSS", "sitemap", "404"]
 [[params.modules]]
   name = "svg"
   layer = "surface"
-  tag = "v0.7.0"
+  tag = "v0.8.0"
   docs = "surfaces/snapshots/"
-  blurb = "Any RGBA render as a self-contained, bit-exact SVG, or as a PNG. The widget catalogue rendered this way: [go-widgets.github.io/svg](https://go-widgets.github.io/svg/)."
+  blurb = "Any RGBA render as a bit-exact SVG or PNG, and timed frames as ONE animated SVG, 22.9x smaller on a live screen. Gallery: [go-widgets.github.io/svg](https://go-widgets.github.io/svg/)."
 [[params.modules]]
   name = "mvvmlint"
   layer = "rules"
