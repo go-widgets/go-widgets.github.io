@@ -53,9 +53,9 @@ disableKinds = ["taxonomy", "term", "RSS", "sitemap", "404"]
 [[params.modules]]
   name = "painter"
   layer = "rendering"
-  tag = "v0.17.0"
+  tag = "v0.21.0"
   docs = "rendering/painter/"
-  blurb = "The seam every widget draws through: seven primitives, optional capabilities (clip, paths, images, masks, faces, raster), a **pixel** painter and a **cell** painter."
+  blurb = "The seam every widget draws through: seven primitives, optional capabilities (clip, paths, images, masks, faces, raster), a **pixel** painter, a **cell** painter and an **SVG** recorder (`svgrec`) that writes the same calls as native, resizable vector."
 [[params.modules]]
   name = "toolkit"
   layer = "rendering"
